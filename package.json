@@ -1,0 +1,46 @@
+{
+  "name": "text-boldify",
+  "displayName": "Text Boldify",
+  "description": "Apply bold formatting to selected text based on file type",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onCommand:textBoldify.boldify"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "textBoldify.boldify",
+        "title": "Boldify Selected Text"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "textBoldify.boldify",
+        "key": "ctrl+b ctrl+b",
+        "mac": "cmd+b cmd+b",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
