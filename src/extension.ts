@@ -180,15 +180,47 @@ export function getFormatter(
 }
 
 /**
+ * Gets custom format template from settings for a specific language
+ * @param actualLanguageId The actual VS Code language ID (e.g., "typescript", "javascript")
+ * @returns Custom format template or null if not configured
+ */
+export function getCustomFormat(actualLanguageId: string): string | null {
+  const config = vscode.workspace.getConfiguration("textBoldify");
+  const customFormats = config.get<Record<string, string>>("customFormats", {});
+  return customFormats[actualLanguageId] || null;
+}
+
+/**
+ * Applies custom format template to text
+ * @param text The text to format
+ * @param template The format template with {text} placeholder
+ * @returns The formatted text
+ */
+export function applyCustomFormat(text: string, template: string): string {
+  return template.replace(/\{text\}/g, text);
+}
+
+/**
  * Applies bold formatting to text using the appropriate formatter
  * @param text The text to format
  * @param languageId The language identifier
+ * @param actualLanguageId The actual VS Code language ID for custom format lookup
  * @returns The formatted text or null if language is unsupported
  */
 export function formatText(
   text: string,
-  languageId: SupportedLanguage | null
+  languageId: SupportedLanguage | null,
+  actualLanguageId: string | null
 ): string | null {
+  // Check for custom format first
+  if (actualLanguageId) {
+    const customFormat = getCustomFormat(actualLanguageId);
+    if (customFormat) {
+      return applyCustomFormat(text, customFormat);
+    }
+  }
+
+  // Fall back to default formatter
   const formatter = getFormatter(languageId);
   if (!formatter) {
     return null;
@@ -272,23 +304,20 @@ export async function boldifySelectedText(): Promise<void> {
     }
 
     // Step 4: Detect language/file type
+    const actualLanguageId = getLanguageId(editor);
     const language = detectLanguage(editor);
-    if (!language) {
-      vscode.window.showWarningMessage(
-        "Boldify is not supported for this file type. Supported types: Markdown, HTML, LaTeX, reStructuredText, TypeScript, JavaScript"
-      );
-      return;
-    }
 
-    // Step 5: Get formatted text using formatter strategy
+    // Step 5: Get formatted text using formatter strategy or custom format
     // Edge case (Requirement 5.1): If text already contains bold syntax,
     // additional formatting is applied without removing existing formatting
     // Edge case (Requirement 5.2): Multi-line selections are handled correctly
     // by the formatter, which wraps the entire selection including newlines
-    const formattedText = formatText(selectedText, language);
+    const formattedText = formatText(selectedText, language, actualLanguageId);
     if (!formattedText) {
       vscode.window.showWarningMessage(
-        "Boldify is not supported for this file type. Supported types: Markdown, HTML, LaTeX, reStructuredText, TypeScript, JavaScript"
+        `Boldify is not supported for this file type (${
+          actualLanguageId || "unknown"
+        }). Add a custom format in settings or use: Markdown, HTML, LaTeX, reStructuredText, TypeScript, JavaScript`
       );
       return;
     }

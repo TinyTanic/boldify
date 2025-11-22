@@ -37,6 +37,10 @@ All notable changes to the "Text Boldify" extension will be documented in this f
 - Support for JavaScript files (`.js`) using HTML `<b>` tags
 - Support for TSX files (`.tsx`) using HTML `<b>` tags
 - Support for JSX files (`.jsx`) using HTML `<b>` tags
+- Configuration setting `textBoldify.customFormats` to customize bold formatting per language
+- Support for custom format templates using `{text}` placeholder
+- Ability to override default formatters with custom templates
+- Ability to add support for additional languages via custom formats
 
 ### Changed
 

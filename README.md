@@ -79,6 +79,38 @@ Select: regular;
 After: const message = "This is <b>regular</b> text";
 ```
 
+## Configuration
+
+You can customize the bold formatting for each language by adding custom format templates in your VS Code settings.
+
+### Custom Format Templates
+
+1. Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
+2. Search for "Text Boldify"
+3. Click "Edit in settings.json" under "Custom Formats"
+4. Add your custom templates using `{text}` as a placeholder
+
+Example configuration in `settings.json`:
+
+```json
+{
+  "textBoldify.customFormats": {
+    "markdown": "**{text}**",
+    "html": "<strong>{text}</strong>",
+    "typescript": "<b>{text}</b>",
+    "javascript": "<b>{text}</b>",
+    "python": "**{text}**",
+    "java": "/* BOLD: {text} */"
+  }
+}
+```
+
+Custom formats take precedence over default formatters, allowing you to:
+
+- Override default formatting for supported languages
+- Add support for additional languages not included by default
+- Use any custom syntax you prefer
+
 ## Requirements
 
 - Visual Studio Code version 1.80.0 or higher

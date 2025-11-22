@@ -27,7 +27,35 @@
         "mac": "cmd+b cmd+b",
         "when": "editorTextFocus"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Text Boldify",
+      "properties": {
+        "textBoldify.customFormats": {
+          "type": "object",
+          "default": {},
+          "description": "Custom bold format templates for each language. Use {text} as placeholder for selected text.",
+          "patternProperties": {
+            ".*": {
+              "type": "string",
+              "description": "Bold format template"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          },
+          "markdownDescription": "Map language IDs to bold format templates. Use `{text}` as placeholder.\n\n| Filename | Bold |\n|----------|------|\n| markdown | `**{text}**` |\n| html | `<b>{text}</b>` |",
+          "examples": [
+            {
+              "markdown": "**{text}**",
+              "html": "<b>{text}</b>",
+              "typescript": "<b>{text}</b>",
+              "javascript": "<b>{text}</b>"
+            }
+          ]
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
