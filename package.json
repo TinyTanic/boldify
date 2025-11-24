@@ -2,8 +2,8 @@
   "name": "boldify",
   "displayName": "Boldify",
   "description": "Apply bold formatting to selected text based on file type",
-  "version": "0.0.1",
-  "icon": "assets/boldify-icon.png",
+  "version": "0.0.2",
+  "icon": "assets/boldify-logo.png",
   "engines": {
     "vscode": "^1.80.0"
   },
