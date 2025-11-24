@@ -185,7 +185,7 @@ export function getFormatter(
  * @returns Custom format template or null if not configured
  */
 export function getCustomFormat(actualLanguageId: string): string | null {
-  const config = vscode.workspace.getConfiguration("textBoldify");
+  const config = vscode.workspace.getConfiguration("boldify");
   const customFormats = config.get<Record<string, string>>("customFormats", {});
   return customFormats[actualLanguageId] || null;
 }
@@ -342,11 +342,11 @@ export async function boldifySelectedText(): Promise<void> {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log("Text Boldify extension is now active");
+  console.log("Boldify extension is now active");
 
   // Register the boldify command
   const disposable = vscode.commands.registerCommand(
-    "textBoldify.boldify",
+    "boldify.boldify",
     boldifySelectedText
   );
 

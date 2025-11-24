@@ -1,12 +1,12 @@
 # Change Log
 
-All notable changes to the "Text Boldify" extension will be documented in this file.
+All notable changes to the "Boldify" extension will be documented in this file.
 
 ## [0.0.1] - 2024-11-21
 
 ### Added
 
-- Initial release of Text Boldify extension
+- Initial release of Boldify extension
 - Support for Markdown bold formatting with `**text**` syntax
 - Support for HTML bold formatting with `<b>text</b>` tags
 - Support for LaTeX bold formatting with `\textbf{text}` command
@@ -37,7 +37,7 @@ All notable changes to the "Text Boldify" extension will be documented in this f
 - Support for JavaScript files (`.js`) using HTML `<b>` tags
 - Support for TSX files (`.tsx`) using HTML `<b>` tags
 - Support for JSX files (`.jsx`) using HTML `<b>` tags
-- Configuration setting `textBoldify.customFormats` to customize bold formatting per language
+- Configuration setting `boldify.customFormats` to customize bold formatting per language
 - Support for custom format templates using `{text}` placeholder
 - Ability to override default formatters with custom templates
 - Ability to add support for additional languages via custom formats

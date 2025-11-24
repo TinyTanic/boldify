@@ -1,6 +1,6 @@
 {
-  "name": "text-boldify",
-  "displayName": "Text Boldify",
+  "name": "boldify",
+  "displayName": "Boldify",
   "description": "Apply bold formatting to selected text based on file type",
   "version": "0.0.1",
   "engines": {
@@ -9,6 +9,7 @@
   "categories": [
     "Formatters"
   ],
+  "publisher": "TinyTanic",
   "author": {
     "name": "Luca Aguzzoli"
   },
@@ -20,22 +21,22 @@
   "contributes": {
     "commands": [
       {
-        "command": "textBoldify.boldify",
+        "command": "boldify.boldify",
         "title": "Boldify Selected Text"
       }
     ],
     "keybindings": [
       {
-        "command": "textBoldify.boldify",
+        "command": "boldify.boldify",
         "key": "ctrl+b ctrl+b",
         "mac": "cmd+b cmd+b",
         "when": "editorTextFocus"
       }
     ],
     "configuration": {
-      "title": "Text Boldify",
+      "title": "boldify",
       "properties": {
-        "textBoldify.customFormats": {
+        "boldify.customFormats": {
           "type": "object",
           "default": {},
           "description": "Custom bold format templates for each language. Use {text} as placeholder for selected text.",
@@ -67,7 +68,8 @@
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts",
     "package": "vsce package",
-    "publish": "vsce publish"
+    "publish": "vsce publish",
+    "vsce": "vsce"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

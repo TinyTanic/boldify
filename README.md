@@ -1,4 +1,4 @@
-# Text Boldify
+# Boldify
 
 Apply bold formatting to selected text based on file type. This VS Code extension automatically detects your file type and wraps selected text with the appropriate bold syntax.
 
@@ -86,7 +86,7 @@ You can customize the bold formatting for each language by adding custom format 
 ### Custom Format Templates
 
 1. Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
-2. Search for "Text Boldify"
+2. Search for "Boldify"
 3. Click "Edit in settings.json" under "Custom Formats"
 4. Add your custom templates using `{text}` as a placeholder
 
@@ -94,7 +94,7 @@ Example configuration in `settings.json`:
 
 ```json
 {
-  "textBoldify.customFormats": {
+  "boldify.customFormats": {
     "markdown": "**{text}**",
     "html": "<strong>{text}</strong>",
     "typescript": "<b>{text}</b>",
